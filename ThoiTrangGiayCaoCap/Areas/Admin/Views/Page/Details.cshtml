@@ -1,0 +1,136 @@
+﻿@model MyClass.Models.Post
+
+@{
+    ViewBag.Title = "Chi Tiết Trang Đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content-wrapper">
+
+
+    <!-- Main content -->
+    <section class="content my-3">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>CHI TIẾT TRANG ĐƠN</strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("Edit","Page",  new { id = Model.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i>Cập Nhật</a>
+                        <a href="@Url.Action("Index","Page")" class="btn btn-sm btn-info"><i class="fas fa-long-arrow-alt-left"></i>Trở Về Danh Sách</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th style="width:80px;color:red;text-align:center">Tiêu Đề</th>
+                        <th style="color:green;text-align:center">Nội Dung</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Tên Trang Đơn</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Title)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>@Html.DisplayNameFor(model => model.Slug)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Slug)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Hình Ảnh</strong>
+                        </td>
+                        <td style="width:80px;">
+                            <img src="~/Public/images/Post/@Model.Img" class="img-fluid" alt="#" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Chi Tiết Bài Viết</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Detail)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Kiểu Bài Viết</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Type)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>@Html.DisplayNameFor(model => model.Metakey)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Metakey)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>@Html.DisplayNameFor(model => model.Metadesc)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Metadesc)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Ngày Tạo</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Create_At)
+                        </td>
+                    <tr>
+                        <td>
+                            <strong>Tạo Bởi</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Create_By)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Ngày Cập Nhật</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Update_At)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Cập Nhật Bởi</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Update_By)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>@Html.DisplayNameFor(model => model.Status)</strong>
+                        </td>
+                        <td>@Html.DisplayFor(model => model.Status)</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

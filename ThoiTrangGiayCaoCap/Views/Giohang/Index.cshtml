@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CartItem>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<section class="maincontent clearfix">
+    <div class="container " style="margin:20px">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 ">
+                <h2 class=" text-uppercase" style="margin-bottom:20px;margin-top:30px;text-align:center;color:#111b8c;font-weight:700">
+                    GIỎ HÀNG
+                </h2>
+                @if (Model != null)
+                {
+                    using (Html.BeginForm("CartUpdate", "Giohang", FormMethod.Post))
+                    {
+
+
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th style="color:red;font-size:20px">Mã Sản Phẩm</th>
+                                    <th style="color:red;font-size:20px">Hình</th>
+                                    <th style="color:red;font-size:20px">Tên Sản phẩm</th>
+                                    <th style="color:red;font-size:20px">Giá</th>
+                                    <th style="color:red;font-size:20px">Số Lượng</th>
+                                    <th style="color:red;font-size:20px">Thành Tiền</th>
+                                    <th style="color:red;font-size:20px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ decimal tongtien = 0;}
+                                @foreach (var cart in Model)
+                                {
+                                    <tr>
+                                        <td style="color:black;font-size:15px;text-align:center">@cart.ProductId</td>
+                                        <td style="color:black;font-size:15px"><img src="~/Public/images/Products/@cart.Img" class="img-fluid card-img-top" style="width:120px" alt="@cart.Name" /></td>
+                                        <td style="color:black;font-size:15px">@cart.Name</td>
+                                        <td style="color:black;font-size:15px">@string.Format("{0:0,0}", cart.Price) <sup>đ</sup></td>
+                                        <td style="color:black;font-size:15px"><input name="quantity" value="@cart.Quantity" type="number" min="1" /></td>
+                                        <td style="color:black;font-size:15px;text-align:right">@string.Format("{0:0,0}", cart.Amount) <sup>đ</sup></td>
+                                        <td style="color:black;font-size:15px;text-align:center">
+                                            <a href="@Url.Action("CartDel","Giohang",new { productid = cart.ProductId})" style="color:red"><i class="glyphicon glyphicon-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    tongtien += cart.Amount;
+                                }
+                                <tr>
+                                    <td colspan="4" style="text-align:center">
+                                        <a href="@Url.Action("Index","Site")" style="background-color:#30cf04;padding:5px ;color:black;font-size:15px;">
+                                            <i class="glyphicon glyphicon-plus"></i>Mua Thêm Sản Phẩm
+                                        </a>
+                                        <input style="background-color:#0aa3f0 ;color:black;font-size:15px;" name="CAPNHAT" type="submit" value="Cập Nhật Đơn Hàng"/>
+                                        <a href="@Url.Action("CartDelAll","Giohang")" style="background-color:#f00a3b;padding:5px ;color:black;font-size:15px;">
+                                            <i class="glyphicon glyphicon-remove"></i>Xóa Đơn Hàng
+                                        </a>
+                                        <a href="~/thanh-toan" style="background-color:#dde010;padding:5px ;color:black;font-size:15px;">
+                                            <i class="glyphicon glyphicon-credit-card"></i>Thanh Toán
+                                        </a>
+                                    </td>
+                                    <td style="text-align:right;color:red;font-size:20px">Thành Tiền</td>
+                                    <td style="text-align:right;color:black;font-size:15px;" colspan="2">@string.Format("{0:0,0}", tongtien) <sup>đ</sup></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                }
+                else
+                {
+                    <h2>CHƯA CÓ SẢN PHẨM CHƯA TRONG GIỎ HÀNG</h2>
+                }
+            </div>
+        </div>
+    </div>
+</section>

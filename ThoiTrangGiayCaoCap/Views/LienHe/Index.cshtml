@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MyClass.Models.Contact>
+@{
+    ViewBag.Title = "Liên Hệ";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<section class="banner">
+    <!-- banner -->
+    <div class="container" style="margin-top:50px">
+        <h1 class="text-center" style="color:#FDA30E">LIÊN HỆ</h1>
+    </div>
+    <!-- //banner -->
+    <!-- contact -->
+    <div class="contact">
+        <div class="container">
+            <div class="contact-grids text-center   ">
+                @foreach (var lienhe in Model)
+                {
+                    <div class="col-md-4 ">
+                        <div class="contact-grid1">
+                            <h3 style="color:#FDA30E;padding-bottom:15px">
+                                <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+                                ĐỊA CHỈ
+                            </h3>
+                            <p style="background-color:#eee;padding:10px">@lienhe.Detail</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-grid2">
+                            <h3 style="color:#FDA30E;padding-bottom:15px">
+                                <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
+                                SỐ ĐIỆN THOẠI
+                            </h3>
+                            <p style="background-color:#eee;padding:10px">@lienhe.Phone</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-grid3">
+                            <h3 style="color:#FDA30E;padding-bottom:15px">
+                                <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                                EMAIL
+                            </h3>
+                            <p style="background-color:#eee;padding:10px"><a href="mailto:@lienhe.Email">@lienhe.Email</a></p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="map wow fadeInDown animated" data-wow-delay=".5s">
+                <h3 class="tittle">Xem trên Bản Đồ</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.751695036148!2d106.77279011428736!3d10.830304561159647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752701a34a5d5f%3A0x30056b2fdf668565!2zVHLGsOG7nW5nIENhbyDEkOG6s25nIEPDtG5nIFRoxrDGoW5nIFRQLkhDTQ!5e0!3m2!1svi!2s!4v1627014153577!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <h3 class="tittle">
+                Ý KIẾN PHẢN HỒI
+            </h3>
+            <form>
+                <div class="contact-form2">
+                    <input type="text" value="Tên" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+                    <input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                    <textarea type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Ghi chú...</textarea>
+                    <input type="submit" value="Gửi">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- //contact -->
+
+
+
+
+</section>
+<!-- banner -->

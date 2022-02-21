@@ -1,0 +1,170 @@
+﻿@model IEnumerable<MyClass.Models.Menu>
+@{
+    ViewBag.Title = "Tất Cả Menu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using (Html.BeginForm("Index", "Menu", FormMethod.Post))
+{ 
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+
+    <!-- Main content -->
+    <section class="content my-3">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger text-uppercase">Menu</strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("Trash","Menu")" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>Thùng Rác</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message")
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingPosition">
+                                    <span> Vị Trí</span>
+                                    <select name="Position" class="form-control">
+                                        <option value="mainmenu">MAIN MENU</option>
+                                        <option value="footermenu">FOOTER MENU</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingCategory">
+                                    <span>Danh Mục Sản Phẩm</span>
+                                    <span class="float-right btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="true" aria-controls="collapseCategory">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </div>
+                                <div id="collapseCategory" class="collapse p-2 m-2" aria-labelledby="headingCategory" data-parent="#accordionExample">
+                                    @foreach (var cat in ViewBag.ListCategory)
+                                    {
+                                        <fieldset class="form-group">
+                                            <input name="itemcat" value="@cat.Id" id="category_@cat.Id" type="checkbox" />
+                                            <label for="category_@cat.Id">@cat.Name</label>
+                                        </fieldset>
+                                    }
+                                    <fieldset class="form-group">
+                                        <input type="submit" name="ThemCategory" value="Thêm" class="btn btn-success form-control" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTopic">
+                                    <span>Chủ Đề Bài Viết</span>
+                                    <span class="float-right btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseTopic" aria-expanded="true" aria-controls="collapseTopic">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </div>
+                                <div id="collapseTopic" class="collapse p-2 m-2" aria-labelledby="headingTopic" data-parent="#accordionExample">
+                                    @foreach (var topic in ViewBag.ListTopic)
+                                    {
+                                        <fieldset class="form-group">
+                                            <input name="itemtopic" value="@topic.Id" id="topic_@topic.Id" type="checkbox" />
+                                            <label for="topic_@topic.Id">@topic.Name</label>
+                                        </fieldset>
+                                    }
+                                    <fieldset class="form-group">
+                                        <input type="submit" name="ThemTopic" value="Thêm" class="btn btn-success form-control" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingPage">
+                                    <span> Trang Đơn</span>
+                                    <span class="float-right btn btn-sm btn-info" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true" aria-controls="collapsePage">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </div>
+                                <div id="collapsePage" class="collapse p-2 m-2" aria-labelledby="headingPage" data-parent="#accordionExample">
+                                    @foreach (var page in ViewBag.ListPage)
+                                    {
+                                        <fieldset class="form-group">
+                                            <input name="itempage" value="@page.Id" id="page_@page.Id" type="checkbox" />
+                                            <label for="page_@page.Id">@page.Title</label>
+                                        </fieldset>
+                                    }
+                                    <fieldset class="form-group">
+                                        <input type="submit" name="ThemPage" value="Thêm" class="btn btn-success form-control" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingConfig">
+                                    <span> Tùy Chỉnh</span>
+                                    <span class="float-right btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseConfig" aria-expanded="true" aria-controls="collapseConfig">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </div>
+                                <div id="collapseConfig" class="collapse p-2 m-2" aria-labelledby="headingConfig" data-parent="#accordionExample">
+                                    <fieldset class="form-group">
+                                        <label>Tên menu</label>
+                                        <input name="name" class="form-control" id="checkid" type="text" />
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label>Liên Kết</label>
+                                        <input name="link" class="form-control" type="text" />
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <input type="submit" name="ThemConfig" value="Thêm" class="btn btn-success form-control" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>Tên Menu</th>
+                                <th>Liên Kết</th>
+                                <th>Kiểu Menu</th>
+                                <th>Vị Trí</th>
+                                <th class="text-center" style="width:180px">Chức Năng</th>
+                                <th>ID</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@item.Name</td>
+                                    <td class="text-center">@item.Link</td>
+                                    <td class="text-center">@item.MenuType</td>
+                                    <td class="text-center">@item.Position</td>
+                                    <td class="text-center">
+                                        @if (item.Status == 1)
+                                        {
+                                            <a href="@Url.Action("Status","Menu" , new { id = item.Id })" class="btn btn-sm btn-success"><i class="fas fa-toggle-on"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Status","Menu" , new { id = item.Id })" class="btn btn-sm btn-dark"><i class="fas fa-toggle-off"></i></a>
+                                        }
+                                        <a href="@Url.Action("Details","Menu",  new { id = item.Id })" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                        <a href="@Url.Action("Edit","Menu",  new { id = item.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                        <a href="@Url.Action("DelTrash","Menu", new { id = item.Id })" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                    <td class="text-center">@item.Id</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+}

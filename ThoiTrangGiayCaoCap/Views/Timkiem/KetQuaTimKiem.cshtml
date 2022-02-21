@@ -1,0 +1,96 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model PagedList.IPagedList<MyClass.Models.ProductInfo>
+
+@{
+    ViewBag.Title = "KetQuaTimKiem";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+<div class="contanier text-center" style="margin-top:30px ">
+    <h2 style="color: #111b8c;font-weight:600">KẾT QUẢ TÌM KIẾM</h2>
+    <div style="margin-top:25px ">
+        <h3>
+            <i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i>
+        @ViewBag.ThongBao
+        <i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i></h3>
+    </div>
+</div>
+
+<section class="content3">
+    <!-- product-nav -->
+
+    <div class="product-easy">
+        <div class="container">
+            <script src="~/Public/js/easyResponsiveTabs.js"></script>
+            <script src="~/Public/js/easyResponsiveTabs.js" type="text/javascript"></script>
+            <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('#horizontalTab').easyResponsiveTabs({
+                                    type: 'default', //Types: default, vertical, accordion
+                                    width: 'auto', //auto or any width like 600px
+                                    fit: true   // 100% fit in a container
+                                });
+                            });
+
+            </script>
+            <div class="sap_tabs">
+                <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                    <div class="contanier">
+                        @foreach (var proinfo in Model)
+                        {
+                            <div class="col-md-3 product-men" style="margin-bottom:30px">
+                                <div class="men-pro-item simpleCart_shelfItem">
+
+                                    <div class="men-thumb-item">
+                                        <img src="~/Public/images/Products/@proinfo.Img" alt="" class="pro-image-front">
+                                        <img src="~/Public/images/Products/@proinfo.Img" alt="" class="pro-image-back">
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href="~/@proinfo.Slug" class="link-product-add-cart">XEM SẢN PHẨM</a>
+                                            </div>
+                                        </div>
+                                        <span class="product-new-top">New</span>
+
+                                    </div>
+                                    <div class="item-info-product ">
+                                        <h4><a href="~/@proinfo.Slug">@proinfo.Name</a></h4>
+                                        <div class="info-product-price">
+                                            <span class="item_price">@string.Format("{0:0,0}", proinfo.Pricesale) <sup>đ</sup></span>
+                                            <del class="text-danger">@string.Format("{0:0,0}", proinfo.Price)</del><sup>đ</sup>
+                                        </div>
+                                        <a href="@Url.Action("CartAdd","Giohang",new { productid = proinfo.Id})" class="item_add single-item hvr-outline-out button2 text-uppercase">
+                                            <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i> Mua
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        @Html.PagedListPager(Model, page => Url.Action("KetQuaTimKiem", "TimKiem", new { page, @sTuKhoa = ViewBag.TuKhoa  }))
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top:40px">
+            <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-4">
+                    <a href="~/tat-ca-san-pham" style="color:#069191;font-size:20px">
+                        XEM TOÀN BỘ SẢN PHẨM
+                        <i class="glyphicon glyphicon-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //product-nav -->
+
+</section>

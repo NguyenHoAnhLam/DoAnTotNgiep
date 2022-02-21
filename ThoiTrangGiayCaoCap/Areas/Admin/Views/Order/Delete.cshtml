@@ -1,0 +1,40 @@
+﻿@model MyClass.Models.Order
+
+@{
+    ViewBag.Title = "Xóa Đơn Hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+
+    <!-- Main content -->
+    <section class="content my-3">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong style="color:red">XÁC NHẬN XÓA ĐƠN HÀNG</strong>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="@Url.Action("Index","Order")" class="btn btn-sm btn-info"><i class="fas fa-long-arrow-alt-left"></i>Trở Về Danh Sách</a>
+                            <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-trash-alt"></i>Xóa</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

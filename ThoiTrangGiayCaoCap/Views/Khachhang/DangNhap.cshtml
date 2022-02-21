@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+@using (Html.BeginForm("DangNhap", "Khachhang", FormMethod.Post))
+{
+  <section class="maincontent clearfix">
+      <div class="container" style="margin:15px">
+          <div class="col-md-8 ">
+              <div class="form-group" style="margin:10px">
+                  <h2 class="text-center" style="margin:20px;color: #111b8c "><i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i>ĐĂNG NHẬP<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i></h2>
+              </div>
+              <div class="form-group" style="margin:10px">
+                  <label>Tên Đăng Nhập</label>
+                  <input name="username" type="text" class="form-control" />
+              </div>
+              <div class="form-group" style="margin:10px">
+                  <label>Mật Khẩu</label>
+                  <input name="password" type="password" class="form-control" />
+              </div>
+              <div class="form-group" style="margin:10px">
+                  <button type="submit" style="background-color:forestgreen">Đăng Nhập</button>
+              </div>
+              <div class="form-group" style="margin:10px">
+                  @Html.Raw(ViewBag.Error)
+              </div>
+          </div>
+      </div>
+  </section>
+}
+

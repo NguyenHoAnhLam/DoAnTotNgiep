@@ -1,0 +1,133 @@
+﻿@model MyClass.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content-wrapper">
+
+
+    <!-- Main content -->
+    <section class="content my-3">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong style="color:red">XÁC NHẬN XÓA DANH MỤC SẢN PHẨM</strong>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="@Url.Action("Edit","Contact",  new { id = Model.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i>Cập Nhật</a>
+                            <a href="@Url.Action("Index","Contact")" class="btn btn-sm btn-info"><i class="fas fa-long-arrow-alt-left"></i>Trở Về Danh Sách</a>
+                            <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-trash-alt"></i>Xóa</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th style="width:120px;color:red;text-align:center">Tiêu Đề</th>
+                        <th style="color:green;text-align:center">Nội Dung</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Họ Tên User
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Fullname)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tên Đăng Nhập
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.UserName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Mật Khẩu
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.PassWord)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Email)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Số Điện Thoại
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Phone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Kiểu User
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Roles)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Ngày Tạo
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Create_At)
+                        </td>
+                    <tr>
+                        <td>
+                            Người Tạo
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Create_By)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Ngày Cập nhật
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Update_At)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Người Cập nhật
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Update_By)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.Status)</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+

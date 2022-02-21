@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <link href="~/Public/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Public/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Public/js/jquery-2.1.4.min.js"></script>
+    <link href="~/Public/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Public/themplate/Stylefont1.css" rel="stylesheet" />
+    <link href="~/Public/themplate/Stylefont2.css" rel="stylesheet" />
+
+    @RenderSection("header", required: false)
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="OQDMDZXG"></script>
+    <section>
+        <!-- header -->
+        <div class="header">
+            <div class="container">
+                <ul>
+                    @if (Session["UserCustomer"].Equals(""))
+                    {
+                        <li><span class="glyphicon glyphicon-bed" aria-hidden="true"></span>Giao hàng miễn phí và nhanh chóng</li>
+                        <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="nguyenhoanhlam161120000@gmail.com">nguyenhoanhlam161120000@gmail.com</a></li>
+                        <li>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="~/dang-ky">Đăng Ký</a>&emsp;
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span><a href="~/dang-nhap">Đăng Nhập</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><span class="glyphicon glyphicon-bed" aria-hidden="true"></span>Giao hàng miễn phí và nhanh chóng</li>
+                        <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="nguyenhoanhlam161120000@gmail.com">nguyenhoanhlam161120000@gmail.com</a></li>
+                        <li>
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span><a href="~/dang-xuat">Đăng Xuất</a>
+                        </li>
+
+                    }
+
+                </ul>
+            </div>
+        </div>
+        <!-- //header -->
+        <!-- header-bot -->
+        <div class="header-bot">
+            <div class="container">
+                <div class="col-md-3 header-left">
+                    <h1><a href="https://localhost:44357"><img src="~/Public/images/logo/logo.png"></a></h1>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div id="txttimkiem">
+                        @using(Html.BeginForm("KetQuaTimKiem","TimKiem",FormMethod.Post))
+                        {
+                                <div class="col-md-8" style="background-color:#f0ad4e;padding:10px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;">
+                                    @Html.TextBox("txtTimKiem", "", htmlAttributes: new { @class = "form-control", @placeholder = "Tìm Kiếm" })
+                                </div>
+                                <div class="col-md-2" style="background-color:#f0ad4e;padding:10px;border-bottom-right-radius: 5px;border-top-right-radius: 5px;">
+                                    <button class="btn btn-warning" type="submit" style="width:50px">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-3 header-right footer-bottom">
+                    <ul>
+                        <li>
+                            <a href="~/dang-nhap" class="use1" data-toggle="modal" data-target="#myModal4"><span>Đăng Nhập</span></a>
+                        </li>
+                        <li><a class="fb" href="https://www.facebook.com/nguyenhoanh.lam.7"></a></li>
+                        <li><a class="twi" href="#"></a></li>
+                        <li><a class="insta" href="#"></a></li>
+                        <li><a class="you" href="#"></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- //header-bot -->
+    </section>
+
+    <!-- mainmenu -->
+    <section class="mainmenu">
+        <div class="ban-top">
+            <div class="container">
+                @Html.Action("MainMenu", "Module")
+            </div>
+        </div>
+    </section>
+    @RenderBody()
+
+    <section class="couponsmain" style="background-color:#449469">
+        <div class="container" style="padding-bottom:50px;padding-top:50px">
+            <div class="coupons-grids text-center">
+                <div class="col-md-3 coupons-gd">
+                    <h3>Mua sản phẩm đối với bạn vô cùng đơn giản</h3>
+                </div>
+                <div class="col-md-3 coupons-gd">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <h4>Đăng nhập vào tài khoản của bạn</h4>
+                    <p>
+                        Nếu chưa có tài khoản thì thực hiện đăng kí tài khoản.
+                    </p>
+                </div>
+                <div class="col-md-3 coupons-gd">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <h4>Chọn sản phẩm theo sở thích của bạn</h4>
+                    <p>
+                        Chọn mua sản phẩm bằng cách ấn vào nút mua hàng.
+                    </p>
+                </div>
+                <div class="col-md-3 coupons-gd">
+                    <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+                    <h4>Thực hiện thanh toán</h4>
+                    <p>
+                        Có thể thanh toán trực tiếp khi nhận hàng hoặc có thể thanh toán qua thẻ ngân hàng.
+                    </p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="footer">
+            <div class="container">
+                <div class="col-md-3 footer-left">
+                    <h1><a href="index.html"><img src="~/Public/images/logo/logo.png" style="width:90%" alt=" " /></a></h1>
+                    <p>
+                        Giày Station ra đời dựa trên niềm yêu thích giày Nike, giày Adidas, giày Vans… của chủ shop bởi vẻ đẹp mê hoặc của các mẫu giày thời thượng này!
+                    </p>
+                </div>
+                <div class="col-md-9 footer-right">
+                    <div class="col-sm-6 newsleft">
+                        <h3>ĐĂNG KÝ ĐỂ NHẬN BẢN TIN !</h3>
+                    </div>
+                    <div class="col-sm-6 newsright">
+                        <form>
+                            <input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                            <input type="submit" value="Gửi">
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="sign-grds">
+                        <div class="col-md-4 sign-gd">
+                            <h4>Thông Tin</h4>
+                            @Html.Action("MenuFooter", "Module")
+                        </div>
+
+                        <div class="col-md-4 sign-gd-two">
+                            <h4>Thông Tin Cửa Hàng</h4>
+                            <ul>
+                                <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Địa Chỉ : 42 Đường số 50, P. Hiệp Bình Chánh, Quận Thủ Đức <span>TP Hồ Chí Minh.</span></li>
+                                <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="nguyenhoanhlam161120000@gmail.com">nguyenhoanhlam161120000@gmail.com</a></li>
+                                <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Điện Thoại : 084 8844 223</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 sign-gd flickr-post">
+                            <h4>FeedBack</h4>
+                            <ul>
+                                <li><a href="single.html"><img src="~/Public/images/fb1.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb2.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb3.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb4.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb5.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb6.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb7.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb8.jpg" alt=" " class="img-responsive" /></a></li>
+                                <li><a href="single.html"><img src="~/Public/images/fb9.jpg" alt=" " class="img-responsive" /></a></li>
+
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix ">
+                    <p class="copy-right"> ©Bản quyền thuộc về STREETWEAR.COM.VN | Thiết Kế Bởi <a href="#">Nguyễn Hồ Anh Lâm</a></p>
+                </div>
+
+            </div>
+        </div>
+        <!-- //footer -->
+    </section>
+    <script src="~/Public/js/easyResponsiveTabs.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true   // 100% fit in a container
+            });
+        });
+
+    </script>
+
+
+
+    <script type="text/javascript" src="~/Public/js/pignose.layerslider.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(window).load(function () {
+            $('#visual').pignoseLayerSlider({
+                play: '.btn-play',
+                pause: '.btn-pause',
+                next: '.btn-next',
+                prev: '.btn-prev'
+            });
+        });
+                                                                                                                                            //]]>
+    </script>
+
+
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!-- cart -->
+    <script src="~/Public/js/simpleCart.min.js"></script>
+    <!-- cart -->
+    <!-- for bootstrap working -->
+    <script type="text/javascript" src="~/Public/js/bootstrap-3.1.1.min.js"></script>
+    <!-- //for bootstrap working -->
+    <script src="~/Public/js/jquery.easing.min.js"></script>
+
+
+
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    @RenderSection("footer", required: false)
+</body>
+</html>

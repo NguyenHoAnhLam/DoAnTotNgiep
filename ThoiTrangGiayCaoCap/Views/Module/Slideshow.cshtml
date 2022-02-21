@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MyClass.Models.Slider>
+<section class="banner">
+    <!-- banner -->
+    <div class="banner-grid">
+        <div id="visual">
+            <div class="slide-visual">
+                <!-- Slideshow Image Area (1000 x 424) -->
+                <ul class="slide-group">
+                    @{int index = 0; }
+                    @foreach (var slider in Model)
+                    {
+                        if (index == 0)
+                        {
+                            <li class="carousel-item active"><img class="img-responsive" src="~/Public/images/Slider/@slider.Img" alt="@slider.Name" /></li>
+                        }
+                        else
+                        {
+                            <li class="carousel-item"><img class="img-responsive" src="~/Public/images/Slider/@slider.Img" alt="@slider.Name" /></li>
+                        }
+                        index++;
+                    }
+                </ul>                
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</section>
+<!-- //banner -->
